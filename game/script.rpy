@@ -15,7 +15,7 @@ define flashbulb = Fade(0.2, 0.0, 0.8, color='#fff')
 # The game starts here.
 
 label start:
-    #bg needs to be wider
+
     play music "audio/beginning.mp3" fadeout 1
     scene bg calesports
 
@@ -178,6 +178,8 @@ label start:
 
     r "Click on the top right button to see the map. You aren't able to go to different areas yet but I have highlighted the area you need to go to. good luck!"
 
+    return
+
 #Forest after the descision
 label world1_pressed:
     stop music fadeout 1
@@ -294,7 +296,6 @@ label world1_pressed:
 
 
     jump world2
-return
 #Desert
 label world2:
     scene space
@@ -374,6 +375,13 @@ label world2:
 
     label choice2_no:
         $ menu_flag = False
+
+        hide cubbie norm
+        show scared:
+            size(200,200)
+            xalign .25
+            yalign .65
+
         "{i}Cubbie turns away from the tempting oasis. The dry feeling persists in their throat.{/i}"
 
     stop music
@@ -593,7 +601,7 @@ label choice3_done:
     show cubbie2:
         size(200,200)
         xalign .75
-        yalign .75
+        yalign .65
 
     "{i}Cubbie holds the controller and feels warm and fuzzy{/i}"
 
@@ -623,7 +631,7 @@ label choice3_done:
         $ menu_flag = True
         k "I knew you’d choose that!"
 
-        #enter photo of CWG discord
+        scene ending1
         "{i}Cubbie returns to CWG, who welcomes them with open arms{/i}"
         jump choice4_done
 
@@ -640,5 +648,4 @@ label choice3_done:
 
 label end:
     "Thank you for playing :)"
-    label main_menu:
-        return
+    return
